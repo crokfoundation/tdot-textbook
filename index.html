@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrokOS YouTube 런처</title>
+    <title>CrokOS 웹 뷰어</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="launcher-container">
-        <svg class="logo" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M27.3512 3.12217C27.0226 1.89069 26.0339 0.901901 24.8024 0.573322C22.6288 0 14 0 14 0C14 0 5.37122 0 3.19762 0.573322C1.96614 0.901901 0.977355 1.89069 0.648776 3.12217C0 5.3411 0 10 0 10C0 10 0 14.6589 0.648776 16.8778C0.977355 18.1093 1.96614 19.0981 3.19762 19.4267C5.37122 20 14 20 14 20C14 20 22.6288 20 24.8024 19.4267C26.0339 19.0981 27.0226 18.1093 27.3512 16.8778C28 14.6589 28 10 28 10C28 10 28 5.3411 27.3512 3.12217Z" fill="#FF0000"/>
-            <path d="M11.1989 14.2858V5.71429L18.4746 10L11.1989 14.2858Z" fill="white"/>
-        </svg>
+    <iframe id="site-frame">
+        <p>브라우저가 iframe을 지원하지 않습니다.</p>
+    </iframe>
 
-        <h2>YouTube 열기</h2>
-        <p>아래 버튼을 눌러 YouTube를 시작하세요.</p>
-        
-        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="play-button">
-            YouTube로 이동
-        </a>
+    <div id="loading-overlay">
+        <p>사이트를 불러오는 중입니다...</p>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
