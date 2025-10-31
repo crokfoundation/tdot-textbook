@@ -1,40 +1,33 @@
-/* 기본 스타일 초기화 */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* 앱 자체의 스크롤 방지 */
-}
+window.addEventListener('load', () => {
+    
+    // ▼▼▼ 여기에 본인의 웹사이트 URL을 입력하세요 ▼▼▼
+    const mySiteUrl = "https://textbook.tdotcorp.kr"; 
+    // ▲▲▲ 여기에 본인의 웹사이트 URL을 입력하세요 ▲▲▲
 
-/* iframe을 화면에 꽉 채우기 */
-#site-frame {
-    width: 100%;
-    height: 100%;
-    border: none; /* 테두리 제거 */
-    display: block;
-    /* 로딩 오버레이보다 뒤에 있도록 z-index 설정 */
-    position: relative;
-    z-index: 1;
-}
+    const iframe = document.getElementById('site-frame');
+    const loadingOverlay = document.getElementById('loading-overlay');
 
-/* 로딩 오버레이 스타일 */
-#loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff; /* 흰색 배경 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2; /* iframe보다 위에 표시 */
-    transition: opacity 0.5s ease; /* 서서히 사라지는 효과 */
-}
+    // 1. iframe의 URL 설정
+    iframe.src = mySiteUrl;
 
-#loading-overlay p {
-    font-size: 18px;
-    font-family: sans-serif;
-    color: #555;
-}
+    // 2. iframe 로드가 완료되면 로딩 화면 숨기기
+    iframe.addEventListener('load', () => {
+        // 로드가 성공하면 로딩 화면을 서서히 투명하게 만듦
+        loadingOverlay.style.opacity = '0';
+        
+        // 애니메이션(0.5초)이 끝난 후 실제로 숨김
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+        }, 500);
+    });
+
+    // 3. (선택 사항) 로드 실패 시 (예: X-Frame-Options 오류)
+    iframe.addEventListener('error', (e) => {
+        console.error('iframe 로드에 실패했습니다.', e);
+        // 로딩 화면에 오류 메시지 표시
+        if(loadingOverlay) {
+            loadingOverlay.innerHTML = '<p>사이트를 불러오는 데 실패했습니다.<br>X-Frame-Options 설정을 확인하세요.</p>';
+            loadingOverlay.style.color = 'red';
+        }
+    });
+});
